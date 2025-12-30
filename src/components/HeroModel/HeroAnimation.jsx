@@ -22,23 +22,28 @@ const HeroAnimation = () => {
       <StarsCanvas />
 
 
-      <Canvas camera={{position: [0,0,10], fov: 45}}>
+      <Canvas
+        camera={{position: [0,0,10], fov: 45}}
+        style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
+      >
           {/**rotating the object */}
-          <OrbitControls 
-              enablePan={false}
-              enableZoom={!isTablet}
-              maxDistance={15}
-              minDistance={5}
-              minPolarAngle={Math.PI / 5}
-              maxPolarAngle={Math.PI / 2}
-          />
+          {!isMobile && (
+            <OrbitControls 
+                enablePan={false}
+                enableZoom={!isTablet}
+                maxDistance={15}
+                minDistance={5}
+                minPolarAngle={Math.PI / 5}
+                maxPolarAngle={Math.PI / 2}
+            />
+          )}
 
           {/**Importing the lighting */}
           <HeroLights />
           
           {/**Model positioning */}
           <group
-            scale={isMobile? 0.7 : 0.8}
+            scale={isMobile ? 0.6 : 0.75}
             position={[0,-2,1.5]}
             rotation={[0,-Math.PI / 4, 0]}
           >
