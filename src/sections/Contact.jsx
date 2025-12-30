@@ -53,17 +53,30 @@ const Contact = () => {
     <section id="contact" className="w-full section-padding pb-20 md:pb-40">
       {/* Success Notification */}
       {showSuccess && (
-        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
-          <div className="card-border rounded-xl px-6 py-4 bg-black-200 flex items-center gap-3 shadow-2xl">
-            <div className="size-8 rounded-full bg-green-500 flex items-center justify-center">
+        <div
+          className="fixed z-50 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 bottom-6 md:bottom-10"
+          style={{ transition: 'transform 250ms ease, opacity 250ms ease', opacity: showSuccess ? 1 : 0, transform: 'translateY(0)' }}
+          aria-live="polite"
+        >
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10 bg-gradient-to-r from-[#0f172a]/90 via-[#0b1020]/90 to-[#111827]/90 backdrop-blur-xl px-5 py-4 flex items-center gap-4">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(205,124,46,0.35),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.08),transparent_30%)]" aria-hidden="true" />
+            <div className="relative size-10 rounded-full bg-green-500/90 flex items-center justify-center shadow-lg shadow-green-500/40">
               <svg className="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <div>
-              <p className="text-white font-semibold">Message sent successfully!</p>
-              <p className="text-white-50 text-sm">I'll get back to you soon.</p>
+            <div className="relative space-y-1">
+              <p className="text-white font-semibold">Message sent!</p>
+              <p className="text-white/70 text-sm">I got your note. I’ll reply soon.</p>
             </div>
+            <button
+              type="button"
+              onClick={() => setShowSuccess(false)}
+              className="relative ml-2 size-8 rounded-full bg-white/10 text-white/70 hover:bg-white/15 hover:text-white transition"
+              aria-label="Dismiss notification"
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}
