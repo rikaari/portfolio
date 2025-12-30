@@ -18,8 +18,8 @@ const HeroAnimation = () => {
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      {/* Background star layer */}
-      <StarsCanvas />
+      {/* Background star layer (disabled on mobile) */}
+      {!isMobile && <StarsCanvas />}
 
 
       <Canvas
