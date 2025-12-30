@@ -58,13 +58,13 @@ const Showcase = () => {
             <div className="first-project-wrapper" ref={project1Ref}>
                 {/**IMAGE WRAPPER */}
                 <div className="image-wrapper">
-                    <img src="/images/project1.png" alt="Ryde" />
+                    <img src="/images/logos/bse.jpg" alt="BLE" style={{ maxHeight: '400px', width: 'auto', objectFit: 'contain', margin: '0 auto' }} />
                 </div>
                 {/**TEXT WRAPPER */}
                 <div className="text-content">
-                    <h2>On-demand type of app</h2>
+                    <h2>Decentralized BLE-Based Military Personnel Tracking System</h2>
                     <p className="text-white-50 md:text-xl">
-                        An app build for navigation
+                        A resource-efficient Android solution for multi-hop, GPS-free battlefield communication and low-cost personnel tracking using Bluetooth Low Energy.
                     </p>
                 </div>
             </div>
@@ -72,17 +72,25 @@ const Showcase = () => {
             {/**RIGHT CONTENT */}
             <div className="project-list-wrapper overflow-hidden">
                 <div className="project" ref={project2Ref}>
-                    <div className="image-wrapper bg-[#ffefdb]">
-                        <img src="/images/project2.png" alt="Lib Man" />
+                    <div className="image-wrapper bg-[#000000]">
+                        <img src="/images/logos/netlinks.jpg" alt="Netlinks" />
                     </div>
-                    <h2>Library Management</h2>
+                    <h2>Automotive Services Website UI Design</h2>
+                    <p className="text-white-50 md:text-xl">
+                        A sleek, user-centered interface for showcasing vehicle customization services.
+                    </p>
                 </div>
 
                 <div className="project" ref={project3Ref}>
-                    <div className="image-wrapper bg-[#ffe7db]">
-                        <img src="/images/project3.png" alt="YC Directory" />
+                    <div className="image-wrapper bg-[#000000]">
+                        <img src="/images/logos/travel.jpg" alt="YC Directory" />
                     </div>
-                    <h2>YC Directory</h2>
+                    <h2>
+                        Travel Booking Platform
+                    </h2>
+                    <p className="text-white-50 md:text-xl">
+                        A visually immersive tourism website promoting authentic African safari experiences.
+                    </p>
                 </div>
 
             </div>
