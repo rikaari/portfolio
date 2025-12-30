@@ -83,13 +83,13 @@ const Showcase = () => {
 
                 <div className="project" ref={project3Ref}>
                     <div className="image-wrapper bg-[#000000]">
-                        <img src="/images/logos/travel.jpg" alt="YC Directory" />
+                        <img src="/images/logos/immigration.jpg" alt="Immigration Portal" />
                     </div>
                     <h2>
-                        Travel Booking Platform
+                        Immigration Services Portal
                     </h2>
                     <p className="text-white-50 md:text-xl">
-                        A visually immersive tourism website promoting authentic African safari experiences.
+                        A streamlined platform for visa applications and immigration document management.
                     </p>
                 </div>
 
