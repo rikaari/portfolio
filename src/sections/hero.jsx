@@ -5,8 +5,11 @@ import HeroAnimation from '../components/HeroModel/HeroAnimation'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import AnimatedCounter from '../components/AnimatedCounter'
+import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities'
 
 const hero = () => {
+  const shouldLoadHeavyContent = useDeviceCapabilities()
+
   useGSAP(() => {
     gsap.fromTo('.hero-text h1',
       //h1 text starts from
@@ -118,7 +121,15 @@ const hero = () => {
         {/** Right 3d content */}
         <figure>
           <div className='hero-3d-layout'>
-            <HeroAnimation />
+            {shouldLoadHeavyContent ? (
+              <HeroAnimation />
+            ) : (
+              <img 
+                src="/images/hero-room.png" 
+                alt="Workspace" 
+                className="w-full h-full object-contain"
+              />
+            )}
           </div>
           
         </figure> 

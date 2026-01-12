@@ -2,9 +2,11 @@ import React, { useRef, useState } from 'react'
 import TitleHeader from '../components/TitleHeader'
 import ContactModel from '../components/Models/ContactModel'
 import emailjs from '@emailjs/browser'
+import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities'
 
 const Contact = () => {
     const formRef = useRef((null));
+  const shouldLoadHeavyContent = useDeviceCapabilities()
 
   const [formData, setFormData] = useState({
     name: '',
@@ -160,7 +162,15 @@ const Contact = () => {
 
           {/* Right Side - 3D Model */}
           <div className="xl:col-span-7 flex items-center justify-center bg-[#cd7c2e] hover:cursor-grab rounded-3xl overflow-hidden">
-            <ContactModel />
+            {shouldLoadHeavyContent ? (
+              <ContactModel />
+            ) : (
+              <img 
+                src="/images/contact-illustration.png" 
+                alt="Contact" 
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
         </div>
       </div>
