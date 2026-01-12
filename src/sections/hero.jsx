@@ -105,7 +105,7 @@ const hero = () => {
 
                 <div className='pTextAnimation'>
                   <p className='text-white-40 md:text-xl relative z-10 pointer-events-none'>
-                    Full-stack developer my ass passionate about building scalable applications. 
+                    Full-stack developer passionate about building scalable applications. 
                   </p>
                 </div>
 
