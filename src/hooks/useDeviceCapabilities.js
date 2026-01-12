@@ -10,40 +10,33 @@ export const useDeviceCapabilities = () => {
         navigator.userAgent
       )
       
-      // Check screen size
-      const isSmallScreen = window.innerWidth < 1024
+      // Check screen size (only very small screens like phones)
+      const isSmallScreen = window.innerWidth < 768
       
-      // Check touch capability
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-      
-      // If mobile OR small screen OR touch device, disable heavy content
-      if (isMobile || isSmallScreen || isTouchDevice) {
+      // Only disable on actual mobile devices (not laptops with touchscreens)
+      if (isMobile || isSmallScreen) {
         setShouldLoadHeavyContent(false)
-        console.log('Heavy content disabled:', { isMobile, isSmallScreen, isTouchDevice })
+        console.log('Heavy content disabled - Mobile device detected:', { isMobile, isSmallScreen, screenWidth: window.innerWidth })
         return
       }
 
-      // Check device memory (< 4GB = low-end)
+      // Check device memory only on low-end devices (< 2GB)
       const deviceMemory = navigator.deviceMemory
-      if (deviceMemory && deviceMemory < 4) {
+      if (deviceMemory && deviceMemory <= 2) {
         setShouldLoadHeavyContent(false)
-        console.log('Heavy content disabled: Low memory', deviceMemory)
+        console.log('Heavy content disabled: Very low memory', deviceMemory)
         return
       }
 
-      // Check CPU cores (< 4 = low-end)
-      const cpuCores = navigator.hardwareConcurrency
-      if (cpuCores && cpuCores < 4) {
-        setShouldLoadHeavyContent(false)
-        console.log('Heavy content disabled: Low CPU cores', cpuCores)
-        return
-      }
-
-      console.log('Heavy content enabled')
+      console.log('Heavy content enabled - Desktop/Laptop detected')
       setShouldLoadHeavyContent(true)
     }
 
     detectCapabilities()
+    
+    // Re-detect on window resize
+    window.addEventListener('resize', detectCapabilities)
+    return () => window.removeEventListener('resize', detectCapabilities)
   }, [])
 
   return shouldLoadHeavyContent
