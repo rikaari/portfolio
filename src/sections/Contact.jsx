@@ -166,7 +166,7 @@ const Contact = () => {
               <ContactModel />
             ) : (
               <img 
-                src="/images/contact-illustration.png" 
+                src="/images/logos/contact.png" 
                 alt="Contact" 
                 className="w-full h-full object-cover"
               />

@@ -38,7 +38,7 @@ export default defineConfig({
     tailwindcss(),
     copyDraco(),
   ],
-  //base: process.env.VITE_BASE_PATH || '/portfolio',
-  base: '/',
+  base: process.env.VITE_BASE_PATH || '/portfolio',
+  //base: '/',
   //during development, you might want to set base to '/' for easier testing and then switch to '/portfolio' for production builds
 })

@@ -125,7 +125,7 @@ const hero = () => {
               <HeroAnimation />
             ) : (
               <img 
-                src="/images/hero-room.png" 
+                src="/images/logos/hero.png" 
                 alt="Workspace" 
                 className="w-full h-full object-contain"
               />

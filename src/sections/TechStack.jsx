@@ -48,7 +48,7 @@ const TechStack = () => {
                                   <TechIcon model={icon} />
                                 ) : (
                                   <img 
-                                    src={techStackImgs.find(img => img.name === icon.name)?.imgPath || icon.imgPath} 
+                                    src={icon.imgPath} 
                                     alt={icon.name} 
                                     className="w-full h-full object-contain p-8"
                                   />
