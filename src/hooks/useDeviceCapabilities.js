@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 export const useDeviceCapabilities = () => {
   const [shouldLoadHeavyContent, setShouldLoadHeavyContent] = useState(true)
+  const [isLowEndDevice, setIsLowEndDevice] = useState(false)
 
   useEffect(() => {
     const detectCapabilities = () => {
@@ -13,7 +14,15 @@ export const useDeviceCapabilities = () => {
       // Check screen size (only very small screens like phones)
       const isSmallScreen = window.innerWidth < 768
       
-      // Only disable on actual mobile devices (not laptops with touchscreens)
+      // Check device memory
+      const deviceMemory = navigator.deviceMemory
+      const hasLowMemory = deviceMemory && deviceMemory <= 2
+      
+      // Determine if low-end device (for animation optimization)
+      const isLowEnd = isMobile || isSmallScreen || hasLowMemory
+      setIsLowEndDevice(isLowEnd)
+      
+      // Only disable 3D on actual mobile devices (not laptops with touchscreens)
       if (isMobile || isSmallScreen) {
         setShouldLoadHeavyContent(false)
         console.log('Heavy content disabled - Mobile device detected:', { isMobile, isSmallScreen, screenWidth: window.innerWidth })
@@ -21,8 +30,7 @@ export const useDeviceCapabilities = () => {
       }
 
       // Check device memory only on low-end devices (< 2GB)
-      const deviceMemory = navigator.deviceMemory
-      if (deviceMemory && deviceMemory <= 2) {
+      if (hasLowMemory) {
         setShouldLoadHeavyContent(false)
         console.log('Heavy content disabled: Very low memory', deviceMemory)
         return
@@ -39,5 +47,5 @@ export const useDeviceCapabilities = () => {
     return () => window.removeEventListener('resize', detectCapabilities)
   }, [])
 
-  return shouldLoadHeavyContent
+  return { shouldLoadHeavyContent, isLowEndDevice }
 }

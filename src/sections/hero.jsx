@@ -8,48 +8,50 @@ import AnimatedCounter from '../components/AnimatedCounter'
 import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities'
 
 const hero = () => {
-  const shouldLoadHeavyContent = useDeviceCapabilities()
+  const { shouldLoadHeavyContent, isLowEndDevice } = useDeviceCapabilities()
 
   useGSAP(() => {
     gsap.fromTo('.hero-text h1',
       //h1 text starts from
       {
-        y: 50,
+        y: isLowEndDevice ? 20 : 50,
         opacity: 0
       },
       //to
       {
         y: 0,
         opacity: 1,
-        stagger: 0.8,
-        duration: 2,
+        stagger: isLowEndDevice ? 0.3 : 0.8,
+        duration: isLowEndDevice ? 1 : 2,
         ease: 'power2.inOut'
       },
     )
   })
 
-  // Animate gradient flow on hero words
+  // Animate gradient flow on hero words (disable on low-end devices)
   useGSAP(() => {
-    gsap.to('.gradient-word', {
-      backgroundPosition: '100% 50%',
-      duration: 2,
-      ease: 'power2.inOut',
-      repeat: -1,
-      yoyo: true
-    })
+    if (!isLowEndDevice) {
+      gsap.to('.gradient-word', {
+        backgroundPosition: '100% 50%',
+        duration: 2,
+        ease: 'power2.inOut',
+        repeat: -1,
+        yoyo: true
+      })
+    }
   })
 
   useGSAP(() => {
     gsap.fromTo('.pTextAnimation p',
       {
-        left: 100,
+        left: isLowEndDevice ? 20 : 100,
         opacity: 0
       },
       {
         left: 0,
         opacity: 1,
-        stagger: 0.8,
-        duration: 4,
+        stagger: isLowEndDevice ? 0.3 : 0.8,
+        duration: isLowEndDevice ? 2 : 4,
         ease: 'power2.inOut'
       },
     )

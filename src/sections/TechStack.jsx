@@ -10,20 +10,20 @@ import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities'
 gsap.registerPlugin(ScrollTrigger);
 
 const TechStack = () => {
-    const shouldLoadHeavyContent = useDeviceCapabilities()
+    const { shouldLoadHeavyContent, isLowEndDevice } = useDeviceCapabilities()
 
     useGSAP(() => {
         gsap.fromTo('.tech-card', {
-            y:50,
+            y: isLowEndDevice ? 20 : 50,
             opacity:0
         },
         {
             y:0,
             opacity: 1,
-            duration: 1,
+            duration: isLowEndDevice ? 0.5 : 1,
             ease: 'power2.inOut',
-            stagger: 0.2,
-            scrollTrigger: {
+            stagger: isLowEndDevice ? 0.1 : 0.2,
+            scrollTrigger: isLowEndDevice ? false : {
                 trigger: '#skills',
                 start: 'top center'
             }

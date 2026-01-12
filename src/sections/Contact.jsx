@@ -6,7 +6,7 @@ import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities'
 
 const Contact = () => {
     const formRef = useRef((null));
-  const shouldLoadHeavyContent = useDeviceCapabilities()
+  const { shouldLoadHeavyContent } = useDeviceCapabilities()
 
   const [formData, setFormData] = useState({
     name: '',
